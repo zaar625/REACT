@@ -7,12 +7,17 @@ const Infinit = () => {
 
   const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
 
-  const observer = useRef();
+  const observer = useRef(); //console.log(observer)-> {current: undefined}
+
   const lastBookElementRef = useCallback(
+    //console.log(node) => <div/>
     (node) => {
       if (loading) return;
-      if (observer.current) observer.current.disconnect();
+      if (observer.current) observer.current.disconnect(); //? ???
+
       observer.current = new IntersectionObserver((entries) => {
+        //! new IntersectionObserver(callback, options)
+        console.log(entries);
         if (entries[0].isIntersecting && hasMore) {
           console.log('Visible');
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
@@ -38,8 +43,9 @@ const Infinit = () => {
               {book}
             </div>
           );
+        } else {
+          return <div key={book}>{book}</div>;
         }
-        return <div key={book}>{book}</div>;
       })}
       <div>{loading && 'Loading...'}</div>
       <div>{error && 'Error...'}</div>

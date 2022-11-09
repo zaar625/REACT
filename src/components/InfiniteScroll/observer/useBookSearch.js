@@ -7,7 +7,7 @@ const useBookSearch = (query, pageNumber) => {
   const [error, setError] = useState(false);
   const [books, setBooks] = useState([]);
   const [hasMore, setHasMore] = useState(false);
-  console.log(books);
+  // console.log(books);
 
   useEffect(() => {
     setBooks([]);
@@ -26,6 +26,7 @@ const useBookSearch = (query, pageNumber) => {
       .then((res) => {
         setBooks((prevBooks) => {
           return [
+            //! Set의 각 값은 고유해야 하므로 값이 동일한지 확인합니다.
             ...new Set([...prevBooks, res.data.docs.map((b) => b.title)]),
           ];
         });

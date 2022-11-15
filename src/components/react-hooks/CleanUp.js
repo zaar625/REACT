@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+//! 마운트 되고나서 할 일
 const CleanUp = () => {
   const [name, setName] = useState('');
   useEffect(() => {

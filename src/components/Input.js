@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 //인풋태그가 많지 않을 경우 아래와 같이 줄여서 사용가능하다.
+
 const Input = () => {
   const [form, setForm] = useState({
     username: '',
